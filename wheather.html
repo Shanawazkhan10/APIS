@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Wheather App</title>
+	 <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<b><h1 style="text-align:center;">WEATHER STATS APP</h1></b>
+</head>
+<body>
+<div class="container">
+	<form id="homepage" autocomplete="off">
+		<div class="form-group" >
+		<input type="text" class="form-control" id="country" placeholder="ENTRY COUNTRY.....">
+		
+		</div>
+		<div class="form-group" >
+		<input type="button" value="CHECK" class="btn btn-primary btn-block" id="check">
+	</div>
+<div id="result">
+	
+</div>
+	</form>
+</div>
+</body>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#check").click(function(){
+			var apikey="d847eb745acb2f6bd5caeb6711128686"
+			var name=$("#country").val()
+			var url="https://api.openweathermap.org/data/2.5/weather?q="+name+"&appid="+apikey
+
+			$.ajax({
+				method:'GET',
+				url:url,
+				success:function(data){
+					console.log(data)
+				var	result=`
+				<h2>Country   : ${data.name}</h2>
+                <h2>Weather   : ${data.weather[0].description}</h2>
+                <h2>Air Speed :${data.wind.speed}</h2>
+				`
+				$("#result").html(result)
+				}
+			})
+		})
+	})
+</script>
+</html>
